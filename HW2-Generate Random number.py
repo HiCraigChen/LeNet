@@ -59,16 +59,22 @@ for num in N:
 #2.自己寫一個亂數產生器
 
 def Random():  #Return a random number between 0 and1.
-    B = time.time()
-    B_str = str(B).split('.')
+    B = time.time()                 #Use current computer time as random variable.
+    #Convert the integer B to string and split the integer and decimal numbers for later usage.
+    B_str = str(B).split('.') 
+    #get the string length in order to get a return between 0 & 1      
     L = len(B_str[1])
+    #fetch the decimal numbers (which is more likely to change when we call it.)
     B = int(B_str[1])
+
+    # If the number is even , reverse it in order to get more random result.
     if B % 2 ==0:
         B = B_str[1][::-1]
-        B = int(B)/10**L
+        B = int(B)/10**L       # Set the number between 0 and 1
     else:
-        B /= 10**L
-    return B
+        B /= 10**L             # Set the number between 0 and 1
+
+    return B                   # Return Result
 
 def myGenerator(N):
     T = time.time()
