@@ -33,13 +33,15 @@ class CovNet(object) :
         self.poolinglay4.calc_maps(self.covlay3.maps)
         self.covlay5.calc_maps(self.poolinglay4.maps)
         self.fclay6.calc_maps(self.covlay5.maps)
-        self.outputlay7.rbf(self.fclay6.maps, mapclass)
+        #self.outputlay7.rbf(self.fclay6.maps, mapclass)
+        self.outputlay7.rbf_softmax(self.fclay6.maps)
 
     def bw_prop(self, mapset, mapclass, learn_rate) :
         output_error = zeros([1, 1, 10])
         output_error[0][0][mapclass] = 1
         
-        fclayer_error = self.outputlay7.back_propa(self.fclay6.maps, output_error, learn_rate, True)
+        #fclayer_error = self.outputlay7.back_propa(self.fclay6.maps, output_error, learn_rate, True)
+        fclayer_error = self.outputlay7.back_propa_softmax(self.fclay6.maps, output_error, learn_rate, True)
         cov5_error = self.fclay6.back_propa(self.covlay5.maps, fclayer_error, learn_rate, True)
         pool4_error = self.covlay5.back_propa(self.poolinglay4.maps, cov5_error, learn_rate, True)
         cov3_error = self.poolinglay4.back_propa(self.covlay3.maps, pool4_error, learn_rate, True)

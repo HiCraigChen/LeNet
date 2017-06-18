@@ -6,8 +6,9 @@ import struct
 
 def train_net(train_covnet, logfile, cycle, learn_rate, case_num = -1) :
     # Read data 
-    trainim_filepath = '../../data/raw/train-images-idx3-ubyte'
-    trainlabel_filepath = '../../data/raw/train-labels-idx1-ubyte'
+    # Change it to your own dataset path
+    trainim_filepath = '../../../data/raw/train-images-idx3-ubyte'
+    trainlabel_filepath = '../../../data/raw/train-labels-idx1-ubyte'
     trainimfile = open(trainim_filepath, 'rb')
     trainlabelfile = open(trainlabel_filepath, 'rb')
     train_im = trainimfile.read()
@@ -52,9 +53,11 @@ def train_net(train_covnet, logfile, cycle, learn_rate, case_num = -1) :
     logfile.write('train_time:'+ str(time.time() - train_btime) + '\t')
 
 def test_net(train_covnet, logfile, case_num = -1) :
+    
     # Read data 
-    testim_filepath = '../../data/raw/t10k-images-idx3-ubyte'
-    testlabel_filepath = '../../data/raw/t10k-labels-idx1-ubyte'
+    # Change it to your own dataset path
+    testim_filepath = '../../../data/raw/t10k-images-idx3-ubyte'
+    testlabel_filepath = '../../../data/raw/t10k-labels-idx1-ubyte'
     testimfile = open(testim_filepath, 'rb')
     testlabelfile = open(testlabel_filepath, 'rb')
     test_im = testimfile.read()
@@ -101,11 +104,12 @@ def test_net(train_covnet, logfile, case_num = -1) :
 
 log_timeflag = time.time()
 train_covnet = CovNet()
+# Creat a folder name 'log' to save the history
 train_covnet.print_netweight('log/origin_weight' + str(log_timeflag) + '.log')
 logfile = open('log/nanerrortestcase.log', 'w')
 logfile.write("train_time:" + str(log_timeflag) + '\t')
-train_net(train_covnet, logfile, 1, [0.005, 0.001], 60000)
+train_net(train_covnet, logfile, 1, [0.00001, 0.000005], 60000)
 train_covnet.print_netweight('log/trained_weight' + str(log_timeflag) + '.log')
-test_net(train_covnet, logfile, 500)
+test_net(train_covnet, logfile, 3000)
 logfile.write('\n')
 logfile.close()
