@@ -5,6 +5,9 @@ This repository is based on build LeNet with Python3 step by step.
 Further information about this repository is in the following website:  
 http://hemingwang.blogspot.tw/2017/04/lenet.html
 
+Slides:
+https://www.slideshare.net/YUNGKUEICHEN/lenet-image-recognition
+
 
 ## LeNet folder
 
