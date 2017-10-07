@@ -8,7 +8,6 @@ http://hemingwang.blogspot.tw/2017/04/lenet.html
 Slides:
 https://www.slideshare.net/YUNGKUEICHEN/lenet-image-recognition
 
-
 ## LeNet folder
 
 There is a complete LeNet CNN in this folder.
